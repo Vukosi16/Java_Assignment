@@ -68,12 +68,29 @@ public class Event {
         return false;
     }
 
+    public boolean isStudentWaitlisted(Student s){
+        for (Student stu : waitlist){
+            if(stu.getStudentId().equals(s.getStudentId())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addStudent(Student s){
         participants.add(s);
     }
 
     public void removeStudent(Student s){
         participants.remove(s);
+    }
+
+    public void addToWaitlist(Student s){
+        waitlist.add(s);
+    }
+
+    public void removeFromWaitlist(Student s){
+        waitlist.remove(s);
     }
 
     public void promoteWaitlist(){
