@@ -15,12 +15,14 @@ public class EventManager {
         );
 
         this.events.put(nextEvent,newEvent);
+        System.out.println("Event created");
         nextEvent++;
     }
 
     public void updateEvent(int id, String name, String time, String location){
         if(events.containsKey(id)){
             events.get(id).updateEvent(name, time, location);
+            System.out.println("Event updated");
         }else{
             System.out.println("No event found");
         }
@@ -29,6 +31,7 @@ public class EventManager {
     public void cancelEvent(int id){
         if(events.containsKey(id)){
             events.remove(id);
+            System.out.println("Event canceled.");
         }else{
             System.out.println("Event not found.");
         }
@@ -44,12 +47,34 @@ public class EventManager {
         }
     }
 
+    public void viewEventsWithParticipantsAndWaitlist(){
+        if(!(events.isEmpty())){
+            for(Integer key: events.keySet()){
+                System.out.println(key + " " + events.get(key).getEventName());
+                System.out.println("Participants");
+                ArrayList<Student> Pstudents = events.get(key).getParticipants();
+                for(Student stu: Pstudents){
+                    System.out.println(stu.getStudentId() + " - " + stu.getName());
+                }
+                System.out.println("Waitlisted students.");
+                Queue<Student> Wstudents = events.get(key).getWaitlist();
+                for(Student stu: Wstudents){
+                    System.out.println(stu.getStudentId() + " - " + stu.getName());
+                }
+            }
+        }else{
+            System.out.println("There are no events.");
+        }
+    }
+
     public void registerStudent(Student s, int eventId){
         if (!(events.get(eventId).isStudentRegistered(s)) && !(events.get(eventId).isStudentWaitlisted(s))){
             if (events.get(eventId).isEventFull()){
                 events.get(eventId).addToWaitlist(s);
+                System.out.println("Student added to waitlist.");
             } else{
                 events.get(eventId).addStudent(s);
+                System.out.println("Student is registered.");
             }
         }else {
             System.out.println("Student is already registered");
@@ -116,8 +141,10 @@ public class EventManager {
 
             WaitlistPromotionThread t1 = new WaitlistPromotionThread(events.get(eventId));
             t1.start();
+            System.out.println("Student has been deregistered.");
         } else if (events.get(eventId).isStudentWaitlisted(s)) {
             events.get(eventId).removeFromWaitlist(s);
+            System.out.println("Student has been removed from waitlist.");
         }else {
             System.out.println("Student does not exist");
         }
