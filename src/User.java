@@ -7,11 +7,11 @@ public abstract class User {
         this.role = role;
     }
 
-    protected String getName(){
+    public String getName(){
         return this.name;
     }
 
-    protected String getRole(){
+    public String getRole(){
         return this.role;
     }
 }

@@ -35,4 +35,28 @@ public class UserManager {
             return null;
         }
     }
+
+    public void loadUsers(String id, String name, String role){
+        if (role.equalsIgnoreCase("student")){
+            User loadedStudent = new Student(id, name);
+            users.put(id, loadedStudent);
+
+            int loadedId = Integer.parseInt(id.substring(1));
+            if (loadedId >= nextStudentId) {
+                nextStudentId = loadedId + 1;
+            }
+        } else if (role.equalsIgnoreCase("staff")){
+            User loadedStaff = new Staff(id, name);
+            users.put(id, loadedStaff);
+
+            int loadedId = Integer.parseInt(id.substring(2));
+            if (loadedId >= nextStaffId) {
+                nextStaffId = loadedId + 1;
+            }
+        }
+    }
+
+    public Map<String, User> getUsers(){
+        return this.users;
+    }
 }

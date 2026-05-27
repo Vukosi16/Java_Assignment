@@ -19,6 +19,17 @@ public class EventManager {
         nextEvent++;
     }
 
+    public void loadEvent(int id,String name, String date, String time, String location,  int maxPart){
+        Event newEvent = new Event(
+                id, name, date, time, location, maxPart
+        );
+
+        this.events.put(id, newEvent);
+        if (id >= nextEvent) {
+            nextEvent = id + 1;
+        }
+    }
+
     public void updateEvent(int id, String name, String time, String location){
         if(events.containsKey(id)){
             events.get(id).updateEvent(name, time, location);
@@ -47,6 +58,10 @@ public class EventManager {
         }
     }
 
+    public Map<Integer, Event> getEvents(){
+        return events;
+    }
+
     public void viewEventsWithParticipantsAndWaitlist(){
         if(!(events.isEmpty())){
             for(Integer key: events.keySet()){
@@ -56,11 +71,13 @@ public class EventManager {
                 for(Student stu: Pstudents){
                     System.out.println(stu.getStudentId() + " - " + stu.getName());
                 }
+                System.out.println();
                 System.out.println("Waitlisted students.");
                 Queue<Student> Wstudents = events.get(key).getWaitlist();
                 for(Student stu: Wstudents){
                     System.out.println(stu.getStudentId() + " - " + stu.getName());
                 }
+                System.out.println();
             }
         }else{
             System.out.println("There are no events.");
@@ -96,11 +113,11 @@ public class EventManager {
         boolean found = false;
 
         for (Event event: events.values()){
-            if (event.getEventDate().equals(query)){
+            if (event.getEventDate().contains(query)){
                 found = true;
                 System.out.println("Event found.");
                 event.showEventDetails();
-            } else if (event.getEventName().equals(query)) {
+            } else if (event.getEventName().contains(query)) {
                 found = true;
                 System.out.println("Event found.");
                 event.showEventDetails();

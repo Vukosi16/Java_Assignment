@@ -1,11 +1,15 @@
+import java.io.*;
+
 public class Main {
-    public void main(String[] args){
-        EventManager evm = new EventManager();
-        UserManager usm = new UserManager();
+    public static void main(String[] args) {
+        EventManager eventManager = new EventManager();
+        UserManager userManager = new UserManager();
+        FileManager fileManager = new FileManager(eventManager, userManager);
+        Menu menu = new Menu(eventManager, userManager);
 
-        Menu m1 = new Menu(evm, usm);
-
-        m1.start();
+        fileManager.loadAll();
+        menu.start();
+        fileManager.saveAll();
 
     }
 }

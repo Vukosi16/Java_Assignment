@@ -71,7 +71,7 @@ public class Menu {
 
             int eventID;
 
-            System.out.println("\n1: View all events.\n2:Register for an event.\n3: Cancel registration.\n4: View registration status.\n5: Search for an event\n6: Logout\n");
+            System.out.println("\n1: View all events.\n2: Register for an event.\n3: Cancel registration.\n4: View registration status.\n5: Search for an event\n6: Logout\n");
             System.out.print("Please pick an option from the menu above: ");
             menuSelectionFlag = sc.nextInt();
             sc.nextLine();
@@ -137,7 +137,7 @@ public class Menu {
             int maxParti;
             int eventID;
 
-            System.out.println("\n1: Create event.\n2:Update event.\n3: Cancel event.\n4: View all events with participants and waitlists.\n5: Search for an event\n6: Sort events\n7: logout\n");
+            System.out.println("\n1: Create event.\n2: Update event.\n3: Cancel event.\n4: View all events with participants and waitlists.\n5: Search for an event\n6: Sort events\n7: logout\n");
             System.out.print("Please pick an option from the menu above: ");
             menuSelectionFlag = sc.nextInt();
             sc.nextLine();
