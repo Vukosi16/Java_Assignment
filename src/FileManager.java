@@ -6,10 +6,13 @@ import java.util.Queue;
 public class FileManager {
     private EventManager eventManager;
     private UserManager userManager;
-    static private final String EVENTS_FILE = "events.txt";
-    static private final String PARTICIPANTS_FILE = "participants.txt";
-    static private final String WAITLIST_FILE = "waitlist.txt";
-    static private final String USERS_FILE = "users.txt";
+
+    //using relative path that will create the files on any folder in any system
+    private static final String DB_FOLDER = "src/Database/";
+    private static final String EVENTS_FILE = DB_FOLDER + "events.txt";
+    private static final String PARTICIPANTS_FILE = DB_FOLDER + "participants.txt";
+    private static final String WAITLIST_FILE = DB_FOLDER + "waitlist.txt";
+    private static final String USERS_FILE = DB_FOLDER + "users.txt";
 
     public FileManager(EventManager evm, UserManager usm){
         this.eventManager = evm;
@@ -26,6 +29,7 @@ public class FileManager {
 
     //will load all events from the text docuemtns to map to the objects
     public void loadAll(){
+        initFiles();
         loadEvents();
         loadUsers();
         loadParticipants();
@@ -192,6 +196,20 @@ public class FileManager {
             }
         } catch (IOException e){
             System.out.println("Something went wrong with retrieving the data.");
+        }
+    }
+
+    //initialized the creation of text if not existant on first run
+    private void initFiles() {
+        String[] files = {EVENTS_FILE, PARTICIPANTS_FILE, WAITLIST_FILE, USERS_FILE};
+        for (String filePath : files) {
+            File file = new File(filePath);
+            try {
+                file.getParentFile().mkdirs(); // creates folders if they don't exist
+                file.createNewFile(); // creates file if it doesn't exist
+            } catch (IOException e) {
+                System.out.println("Could not create file: " + filePath);
+            }
         }
     }
 }
