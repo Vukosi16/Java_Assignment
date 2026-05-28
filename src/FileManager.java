@@ -16,6 +16,7 @@ public class FileManager {
         this.userManager = usm;
     }
 
+    //will save all the data to text documents upon program closure
     public void saveAll(){
         saveEvents();
         saveParticipants();
@@ -23,6 +24,7 @@ public class FileManager {
         saveUsers();
     }
 
+    //will load all events from the text docuemtns to map to the objects
     public void loadAll(){
         loadEvents();
         loadUsers();

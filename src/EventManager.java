@@ -19,6 +19,7 @@ public class EventManager {
         nextEvent++;
     }
 
+    //will load in all the events from the text file
     public void loadEvent(int id,String name, String date, String time, String location,  int maxPart){
         Event newEvent = new Event(
                 id, name, date, time, location, maxPart

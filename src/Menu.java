@@ -13,6 +13,7 @@ public class Menu {
         this.sc = new Scanner(System.in);
     }
 
+    //this is the main menu program loop
     public void start(){
         String regOrLoginFlag;
 
@@ -39,6 +40,7 @@ public class Menu {
 
     }
 
+    //will run when register is selected on the menu
     private void handleRegister(){
         String currentUserName;
         String currentUserRole;
@@ -53,6 +55,7 @@ public class Menu {
         System.out.println("Please login using your new user ID.");
     }
 
+    //will run when login is selected on the menu
     public void handleLogin(){
         String currentUserId;
 
@@ -62,6 +65,7 @@ public class Menu {
         currentUser = userManager.loginUser(currentUserId);
     }
 
+    //menu for student role access
     private void showStudentMenu(){
 
         System.out.println("Welcome " + currentUser.getName() + ". Navigate the menu and select your path.\nMenu options: ");
@@ -128,6 +132,7 @@ public class Menu {
 
     }
 
+    //menu for staff role access
     private void showStaffMenu(){
         int menuSelectionFlag;
 

@@ -11,6 +11,7 @@ public class UserManager {
         this.nextStaffId = 101;
     }
 
+    //registers the users based on their roles with unique usernames
     public void registerUser(String name, String role){
         if (role.toLowerCase().equals("student")){
             User createdStudent = new Student("S" + nextStudentId, name);
@@ -36,6 +37,7 @@ public class UserManager {
         }
     }
 
+    //loads the users from the text file
     public void loadUsers(String id, String name, String role){
         if (role.equalsIgnoreCase("student")){
             User loadedStudent = new Student(id, name);

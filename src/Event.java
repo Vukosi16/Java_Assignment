@@ -93,6 +93,7 @@ public class Event {
         waitlist.remove(s);
     }
 
+    //will run in a seperate thread to promote waitlisted user to participant
     public void promoteWaitlist(){
         if (waitlist.isEmpty()){
             System.out.println("Waitlist is empty");
@@ -102,8 +103,7 @@ public class Event {
         participants.add(firstStudent);
     }
 
-    //for understanding, this is a setter right?
-    //and also, should all these be optional and only allow for changes where needed
+
     public void updateEvent(String name, String time , String location){
         this.eventName = name;
         this.eventTime = time;
